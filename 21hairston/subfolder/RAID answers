@@ -1,0 +1,5 @@
+Assuming 10 disks with 1tb capacity each:
+
+RAID 0: 10 tb usable storage
+RAID 1: 1 tb usable storage
+RAID 5: 9tb usable storage
