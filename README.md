@@ -80,8 +80,6 @@ Journaling
 https://www.howtogeek.com/howto/33552/htg-explains-which-linux-file-system-should-you-choose/
 
 
-## End of Day 1
-
 2019Jul01 Wrap Up  Day 0
 
 1.	Disk Space needs to be increased on / [DONE]
@@ -125,6 +123,61 @@ https://www.howtogeek.com/howto/33552/htg-explains-which-linux-file-system-shoul
 ### Linux Tools
 
 ssh, bash, secure ftp, mkdir, cat, >>, less, vi, curl, hexdump -c, ln, df, mount, curl, rsync
+
+Shell Commands From Day 1
+
+```
+pwd
+
+cd
+
+cd ~
+
+cd ..
+
+mkdir
+
+l;s
+
+rmdir
+
+touch
+
+rm 
+
+rm -r
+
+df 
+
+find 
+
+date
+
+cat 
+
+CTRL-C
+
+echo
+
+grep
+
+vi
+
+wc
+
+tac
+
+man
+
+curl
+
+wget
+
+cut
+
+history
+```
+
 
 ### Project Research
 
