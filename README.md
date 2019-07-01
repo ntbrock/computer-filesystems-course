@@ -25,11 +25,11 @@ Topics of study will include:
 Mr. Taylor Brockman, Summer Ventures (1997) and NCSSM (1999) alum, Chief Technology Officer: Magic Number and Brain Power Software
 
 
-## Monday Agenda
+## Day 0 Monday Agenda
 
-Goal: Context and Provisioning
+Goal: Context and Account Provisioning
 
-Backgrounds
+	Activity: Student Introductions, Backgrounds, Goals
 
 ### Types of Computers
 
@@ -40,6 +40,9 @@ Original, in ROM chip storage
 	Demo: Raspberry Pi setup?
 
 	Activity: Review capabilities of the workstations we have in the lab
+
+	Activity: Github Account Creation and Password Randomization
+
 
 ### Types of Media
 
@@ -63,7 +66,7 @@ FAT, FAT32, NTFS, Joilet, ext2, ext4, xfs, nfs
 
 	Demo: Amazon EC2 , Magic Number
 
-	Activity: Password generation and access testing
+	Activity: Access testing and Password Setup
 
 ### Linux Tools
 
