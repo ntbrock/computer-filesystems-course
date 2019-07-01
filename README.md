@@ -1,10 +1,10 @@
-# computer-filesystems-course
-2019Jul01 Computer Filesytems Course developed at Summer Ventures 2019
 
-
-# Computer Filesystems
+# Computer Filesystems Course
 
 2019Jul01 Taylor Brockman, Content published under MIT license.
+
+Computer Filesytems Course developed at Summer Ventures 2019
+
 
 ## Course Description
 
@@ -13,13 +13,16 @@ Big data heralds the arrival of a new knowledge backed statistical learning econ
 Keywords: Linux, Unix, Networking, Cloud, Virtualization, Encryption, Privacy, and Ethics.
 
 Topics of study will include:
-File Input Output
-Filesystems
-Pipes and Processes
-Demonstration Projects
+
+- File Input Output
+
+- Filesystems
+
+- Pipes and Processes
+
+- Demonstration Projects
+
 Mr. Taylor Brockman, Summer Ventures (1997) and NCSSM (1999) alum, Chief Technology Officer: Magic Number and Brain Power Software
-
-
 
 
 ## Monday Agenda
@@ -84,7 +87,7 @@ visualization, art, gaming, networking, machine learning, performance.
 
 Day 0: Context and Provisioning
 
-Day 1: File Contents and Networking - Nginx, Hexdump, Writing/Reading
+Day 1: File Contents and Networking - Pipes, Hexdump, Nginx, Rsync
 
 Day 2: Secrets and Security - Encryption in Transport and at Rest
 
