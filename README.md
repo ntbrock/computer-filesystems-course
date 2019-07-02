@@ -80,44 +80,6 @@ Journaling
 https://www.howtogeek.com/howto/33552/htg-explains-which-linux-file-system-should-you-choose/
 
 
-2019Jul01 Wrap Up  Day 0
-
-1.	Disk Space needs to be increased on / [DONE]
-
-2.	Python 3.6.6 Virtual Envriobnrment
-
-3.	Povray needs to be installed + Tested 
-
-4.	Gnuplot needs to be installed [DONE]
-
-5.	Need to setup Nginx user directory hosting
-
-
-
-```
-# lvextend -L+40G /dev/ubuntu-vg/ubuntu-lv
-  Size of logical volume ubuntu-vg/ubuntu-lv changed from 4.00 GiB (1024 extents) to 44.00 GiB (11264 extents).
-  Logical volume ubuntu-vg/ubuntu-lv successfully resized.
-
-# resize2fs /dev/ubuntu-vg/ubuntu-lv
-
-```
-
-
-
-
-
-
-	Demo: ISO's, DD to SD cards.
-
-	Demo: Fdisk, blocks, inodes.
-
-### Provisioning Access
-
-	Demo: ESXi vm setup with remote access
-
-	Demo: Amazon EC2 , Magic Number
-
 	Activity: Access testing and Password Setup
 
 ### Linux Tools
@@ -191,6 +153,30 @@ Taylor's project need of lsyncd and encryption replication.
 At the end of Day 0, every student should have the context of filesystems,  remote access to the svsm2019 student virutal machine, and be empowered to come up with a proposal for a project that includes a filesystem in some way:
 
 visualization, art, gaming, networking, machine learning, performance.
+
+
+### 2019Jul01 Wrap Up  Day 0
+
+1.	Disk Space needs to be increased on / [DONE]
+
+2.	Python 3.6.6 Virtual Envriobnrment
+
+3.	Povray needs to be installed + Tested 
+
+4.	Gnuplot needs to be installed [DONE]
+
+5.	Need to setup Nginx user directory hosting
+
+
+
+```
+# lvextend -L+40G /dev/ubuntu-vg/ubuntu-lv
+  Size of logical volume ubuntu-vg/ubuntu-lv changed from 4.00 GiB (1024 extents) to 44.00 GiB (11264 extents).
+  Logical volume ubuntu-vg/ubuntu-lv successfully resized.
+
+# resize2fs /dev/ubuntu-vg/ubuntu-lv
+
+```
 
 
 ### Povray Notes
@@ -277,6 +263,21 @@ Povray demo
 
 
 1PM - 2PM Anne Belk Hall Room 310
+
+
+
+
+## Activity Backlog
+
+	Demo: ISO's, DD to SD cards.
+
+	Demo: Fdisk, blocks, inodes.
+
+### Provisioning Access
+
+	Demo: ESXi vm setup with remote access
+
+	Demo: Amazon EC2 , Magic Number
 
 
 
