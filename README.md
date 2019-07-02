@@ -193,6 +193,53 @@ At the end of Day 0, every student should have the context of filesystems,  remo
 visualization, art, gaming, networking, machine learning, performance.
 
 
+### Povray Notes
+
+Animations
+
+https://www.povray.org/documentation/view/3.6.1/108/
+
+http://www.ms.uky.edu/~lee/visual05/povray/transspheresmovie.pov
+
+
+### Python Virtual Env Notes
+
+Installed python 3.6.3 alongside py3, plus enabled the py virtual environments.
+
+```
+$ python3.6 -V
+Python 3.6.8
+
+$ python3 -V
+Python 3.7.3
+```
+
+https://linuxize.com/post/how-to-create-python-virtual-environments-on-ubuntu-18-04/
+
+https://gist.github.com/mattseymour/08456b01c467859fba625ba5711fa08e
+
+### Enabling Nginx User Dirs
+
+https://websiteforstudents.com/configure-nginx-userdir-feature-on-ubuntu-16-04-lts-servers/
+
+http://svsm.taylorbrockman.com/~brockman/
+
+
+### Enable a Tensorflow AI Calculation Environment
+
+https://www.tensorflow.org/beta/tutorials/quickstart/beginner
+
+http://yann.lecun.com/exdb/mnist/
+
+$ pip3 install tensorflow==1.5
+
+Trying install from source
+
+https://docs.bazel.build/versions/master/install-ubuntu.html
+
+Used ubuntu instructions
+
+
 ## Day by Day
 
 Day 0: Context and Provisioning
@@ -202,6 +249,26 @@ Day 1: File Contents and Networking - Pipes, Hexdump, Nginx, Rsync
 Day 2: Secrets and Security - Encryption in Transport and at Rest
 
 Day 3: Economics and the Future - Box provider, organization schemes, reactive filesytems
+
+
+# Day 1
+
+Fire Drill Instructions
+
+Rsync, multiple hosts
+
+ISO's / DD's
+
+Hexdump -c
+
+Nginx user directories
+
+Gnuplot demo
+
+Povray demo
+
+
+1PM - 2PM Anne Belk Hall Room 310
 
 
 
