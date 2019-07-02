@@ -251,17 +251,25 @@ Day 2: Secrets and Security - Encryption in Transport and at Rest
 Day 3: Economics and the Future - Box provider, organization schemes, reactive filesytems
 
 
-# Day 1
+# Day 1  2019Jul02
 
 Fire Drill Instructions
 
-Rsync, multiple hosts
+Network Day!
+
+Layer 7 Model, TCP Headers, Ports, 
+
+Nginx user directories
+
+Vi / Nano / Emacs
+
+Rsync, multiple hosts, SSH private/public keys
 
 ISO's / DD's
 
+
 Hexdump -c
 
-Nginx user directories
 
 Gnuplot demo
 
