@@ -26,7 +26,7 @@ def signup(username, password):
         with open('users/' + username + '.json', 'w+') as f:
             json.dump({"username": username, "password": password}, f)
     return error
-    
+
 def getUsersOnWorld(world):
     userFiles = [f for f in listdir('users') if isfile(join('users/', f))]
     users = []
@@ -55,7 +55,7 @@ def logInScreen(screen):
         if key:
             try:
                 char = chr(key.key_code)
-                if key.key_code == 10:
+                if key.key_code in [10, 13]:
                     if selected == 2:
                         errorMessage = login(username, password)
                         if errorMessage == "success":
@@ -84,7 +84,7 @@ def logInScreen(screen):
                         username = username[:len(username)-1]
                     elif selected == 1:
                         password = password[:len(password)-1]
-                if key.key_code == 10: # enter
+                if key.key_code in [10, 13]: # enter
                     None
         screen.clear()
         screen.print_at(errorMessage, 20, 5, 1)
@@ -132,20 +132,26 @@ def createCharacterScreen(screen):
                 selected = abs(selected % 5)
             elif key.key_code in [-205, -203] :
                 partsData = []
-                with open('charData/' + parts[selected][0] + '.json') as f:
-                    partsData = json.load(f)
-                parts[selected][1] += 1 if key.key_code == -205 else -1
-                parts[selected][1] %= len(partsData)
-            elif key.key_code == 10 and selected == 4:
-                with open('users/' + localUser + '.json') as f:
-                    player = json.load(f)
-                    player["hat"] = parts[0][1]
-                    player["face"] = parts[1][1]
-                    player["body"] = parts[2][1]
-                    player["legs"] = parts[3][1]
-                    with open('users/' + localUser + '.json', 'w') as g:
-                        json.dump(player, g)
-                running = False
+                try:
+                    with open('charData/' + parts[selected][0] + '.json') as f:
+                        partsData = json.load(f)
+                    parts[selected][1] += 1 if key.key_code == -205 else -1
+                    parts[selected][1] %= len(partsData)
+                except:
+                    None
+            elif key.key_code in [10, 13] and selected == 4:
+                try:
+                    with open('users/' + localUser + '.json') as f:
+                        player = json.load(f)
+                        player["hat"] = parts[0][1]
+                        player["face"] = parts[1][1]
+                        player["body"] = parts[2][1]
+                        player["legs"] = parts[3][1]
+                        with open('users/' + localUser + '.json', 'w') as g:
+                            json.dump(player, g)
+                    running = False
+                except:
+                    None
         screen.clear()
         for num, item in enumerate(parts):
             with open('charData/'+item[0]+'.json') as f:
@@ -184,7 +190,7 @@ def worldSelect(screen):
         if key:
             try:
                 char = chr(key.key_code)
-                if key.key_code == 10:
+                if key.key_code in [10, 13]:
                     try:
                         with open('worlds/'+world+'.json') as f:
                             data = json.load(f)
@@ -219,59 +225,62 @@ def worldScreen(screen):
     global localUser
     running = True
     while running:
-        pData = {}
-        with open('users/'+localUser+'.json') as f:
-            pData = json.load(f)
-        key = screen.get_event()
-        if key:
-            if key.key_code == -206:
-                pData['y'] += 1
-            elif key.key_code == -204:
-                pData['y'] -= 1
-            elif key.key_code == -205:
-                pData['x'] += 1
-            elif key.key_code == -203:
-                pData['x'] -= 1
-        with open('users/'+localUser+'.json', 'w') as f:
-            json.dump(pData, f)
-        screen.clear()
-        screen.print_at('Logged in as', 0, 0)
-        screen.print_at(localUser, 13, 0, 3)
-        screen.print_at('Current world', 0, 1)
-        screen.print_at(pData['world'], 14, 1, 2)
-        users = getUsersOnWorld(pData['world'])
-        screen.print_at('-' * 66, 0, 2)
-        screen.print_at(str(len(users)) + " active", 68, 0)
-        for i in range(40):
-            screen.print_at('|', 67, i)
-        pData = {}
-        with open('users/'+localUser+'.json') as f:
-            pData = json.load(f)
-        wData = {}
-        with open('worlds/'+pData['world']+'.json') as f:
-            wData = json.load(f)
-        for index, row in enumerate(wData['data']['map']):
-            end = 33+pData['x']
-            if end > len(row):
-                end = len(row)
-            y = 12-pData['y']+index
-            if y < 3:
-                y = 3
-            screen.print_at(row[:end], 33-pData['x'], y)
-        for index, user in enumerate(users):
-            if user == localUser:
-                color = 3
-            else:
-                color = 5
-            screen.print_at(user, 68, 1+index, color)
-            with open('users/'+user+'.json') as f:
-                data = json.load(f)
-                if color == 3:
-                    screen.print_at('@', 33, 12, color)
+        try:
+            pData = {}
+            with open('users/'+localUser+'.json') as f:
+                pData = json.load(f)
+            key = screen.get_event()
+            if key:
+                if key.key_code == -206:
+                    pData['y'] += 1
+                elif key.key_code == -204:
+                    pData['y'] -= 1
+                elif key.key_code == -205:
+                    pData['x'] += 1
+                elif key.key_code == -203:
+                    pData['x'] -= 1
+            with open('users/'+localUser+'.json', 'w') as f:
+                json.dump(pData, f)
+            screen.clear()
+            screen.print_at('Logged in as', 0, 0)
+            screen.print_at(localUser, 13, 0, 3)
+            screen.print_at('Current world', 0, 1)
+            screen.print_at(pData['world'], 14, 1, 2)
+            users = getUsersOnWorld(pData['world'])
+            screen.print_at('-' * 66, 0, 2)
+            screen.print_at(str(len(users)) + " active", 68, 0)
+            for i in range(40):
+                screen.print_at('|', 67, i)
+            pData = {}
+            with open('users/'+localUser+'.json') as f:
+                pData = json.load(f)
+            wData = {}
+            with open('worlds/'+pData['world']+'.json') as f:
+                wData = json.load(f)
+            for index, row in enumerate(wData['data']['map']):
+                end = 33+pData['x']
+                if end > len(row):
+                    end = len(row)
+                y = 12-pData['y']+index
+                if y < 3:
+                    y = 3
+                screen.print_at(row[:end], 33-pData['x'], y)
+            for index, user in enumerate(users):
+                if user == localUser:
+                    color = 3
                 else:
-                    screen.print_at('@', 33+data['x']-pData['x'],12+data['y']-pData['y'], color)
-        screen.refresh()
-        sleep(.075)
+                    color = 5
+                screen.print_at(user, 68, 1+index, color)
+                with open('users/'+user+'.json') as f:
+                    data = json.load(f)
+                    if color == 3:
+                        screen.print_at('@', 33, 12, color)
+                    else:
+                        screen.print_at('@', 33+data['x']-pData['x'],12+data['y']-pData['y'], color)
+            screen.refresh()
+            sleep(.075)
+        except:
+            None
 nextScreen = 'worldSelect'
 localUser = {}
 def main():
