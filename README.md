@@ -257,9 +257,20 @@ ISO's / DD's
 Hexdump -c
 
 
-Gnuplot demo
+## Gnuplot demo
 
-Povray demo
+https://www.lotterypost.com/thread/250775
+
+https://stackoverflow.com/questions/14871272/plotting-using-a-csv-file
+
+http://www.math.utk.edu/~vasili/refs/How-to/gnuplot.print.html
+
+
+
+
+## Povray demo
+
+
 
 
 1PM - 2PM Anne Belk Hall Room 310
@@ -279,5 +290,25 @@ Povray demo
 
 	Demo: Amazon EC2 , Magic Number
 
+
+## Day 2 Secrets
+
+Random Numbers
+
+Prime Numbers
+
+PKI - Public Key Infrastructure
+
+Transport Layer Encryption - TLS / VPN
+
+Encryption at Rest (PGP)
+
+Spellbooks
+
+SSH Public Keys
+
+Firewalls
+
+Git Filesystem
 
 
