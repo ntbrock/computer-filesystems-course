@@ -3,8 +3,8 @@ rm pureGPS.csv
 rm purewind.csv
 rm superpuredata.csv
 
-grep "GPGLL" allthesaildata.txt > pureGPS.csv
-grep "IIVWT" allthesaildata.txt > purewind.csv
+grep "GPGLL" *.nmea > pureGPS.csv
+grep "IIVWT" *.nmea > purewind.csv
 
 paste pureGPS.csv purewind.csv > superpuredata.csv
 
