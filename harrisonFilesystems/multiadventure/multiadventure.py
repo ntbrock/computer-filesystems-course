@@ -1,10 +1,18 @@
-from asciimatics.screen import Screen
-import asciimatics
 from time import sleep
 import json
 from os import listdir
 from os.path import isfile, join
 import atexit
+import pip
+import os
+from pip._internal import main as dang
+
+try:
+    import asciimatics
+    from asciimatics.screen import Screen
+except:
+    dang(['install', 'asciimatics'])
+    print("RE-RUN SCRIPT")
 
 def login(username, password):
     error = "success"
@@ -200,7 +208,9 @@ def worldSelect(screen):
                                     pData = json.load(g)
                                     pData['world'] = world
                                     pData['x'] = 0
+                                    pData['prevx'] = 0
                                     pData['y'] = 0
+                                    pData['prevy'] = 0
                                     with open('users/'+localUser+'.json','w') as l:
                                         json.dump(pData, l)
                                 running = False
@@ -221,9 +231,28 @@ def worldSelect(screen):
         screen.refresh()
         sleep(.075)
 
+def runCommand(command):
+    global localUser
+    print(command)
+    print(command[:2] + 'short')
+    if command[:3] == 'say':
+        text = command[4:]
+        print(text)
+        try:
+            with open('users/'+localUser+'.json') as f:
+                pData = json.load(f)
+                with open('chat/'+pData['world']+'.chat', 'a') as g:
+                    g.write(localUser+': '+text+'\n')
+        except:
+            None
+    if command[:4] == 'exec':
+        text = command[5:]
+        exec(text)
 def worldScreen(screen):
     global localUser
     running = True
+    console = False
+    command = ''
     while running:
         try:
             pData = {}
@@ -231,14 +260,62 @@ def worldScreen(screen):
                 pData = json.load(f)
             key = screen.get_event()
             if key:
+                if key.key_code in [-206, -204, -205, -203]:
+                    pData['prevy'] = pData['y']
+                    pData['prevx'] = pData['x']
                 if key.key_code == -206:
+                    pData['prevy'] = pData['y']
                     pData['y'] += 1
                 elif key.key_code == -204:
+                    pData['prevy'] = pData['y']
                     pData['y'] -= 1
                 elif key.key_code == -205:
+                    pData['prevx'] = pData['x']
                     pData['x'] += 1
                 elif key.key_code == -203:
+                    pData['prevx'] = pData['x']
                     pData['x'] -= 1
+                elif key.key_code == -1:
+                    running = False
+                elif key.key_code == 47 and not console:
+                    console = True
+                elif key.key_code in [10, 13] and console:
+                    runCommand(command)
+                    command = ''
+                    console = False
+                elif console and key.key_code > 0:
+                    try:
+                        command += chr(key.key_code)
+                    except:
+                        None
+                elif console and key.key_code == -300:
+                    command = command[:len(command)-1]
+            with open('worlds/'+pData['world']+'.json') as f:
+                data = json.load(f)
+                wMap = data['data']['map']
+                try:
+                    if data['data']['bounds'] == "true":
+                        if pData['y'] > len(wMap) -1:
+                            pData['y'] = len(wMap) -1
+                            pData['prevy'] = pData['y']
+                        if pData['y'] < 0:
+                            pData['y'] = 0
+                            pData['prevy'] = pData['y']
+                        if pData['x'] > len(wMap[pData['y']])-1:
+                            pData['x'] = len(wMap[pData['y']])-1
+                            pData['prevx'] = pData['x']
+                        if pData['x'] < 0:
+                            pData['x'] = 0
+                            pData['prevx'] = pData['x']
+                except:
+                    None
+                try:
+                    walls = data['data']['walls']
+                    if wMap[pData['y']][pData['x']] in walls:
+                            pData['y'] = pData['prevy']
+                            pData['x'] = pData['prevx']
+                except: 
+                    None
             with open('users/'+localUser+'.json', 'w') as f:
                 json.dump(pData, f)
             screen.clear()
@@ -247,7 +324,7 @@ def worldScreen(screen):
             screen.print_at('Current world', 0, 1)
             screen.print_at(pData['world'], 14, 1, 2)
             users = getUsersOnWorld(pData['world'])
-            screen.print_at('-' * 66, 0, 2)
+            screen.print_at('-' * 67, 0, 2)
             screen.print_at(str(len(users)) + " active", 68, 0)
             for i in range(40):
                 screen.print_at('|', 67, i)
@@ -263,20 +340,42 @@ def worldScreen(screen):
                     end = len(row)
                 y = 12-pData['y']+index
                 if y < 3:
-                    y = 3
+                    y = -1
                 screen.print_at(row[:end], 33-pData['x'], y)
             for index, user in enumerate(users):
                 if user == localUser:
                     color = 3
                 else:
                     color = 5
-                screen.print_at(user, 68, 1+index, color)
                 with open('users/'+user+'.json') as f:
                     data = json.load(f)
+                    if data['x'] == pData['x'] and data['y'] == pData['y'] and user != localUser:
+                        screen.print_at(user, 68, 1+index, color)
                     if color == 3:
                         screen.print_at('@', 33, 12, color)
                     else:
                         screen.print_at('@', 33+data['x']-pData['x'],12+data['y']-pData['y'], color)
+            if console:
+                screen.print_at('-'*90,0, 22)
+                screen.print_at(' '*90, 0, 23)
+                screen.print_at('/', 0, 23)
+                screen.print_at(command, 1, 23)
+            try:
+                with open('chat/'+pData['world']+'.chat') as f:
+                    lines = [x for x in f.readlines()]
+                    line = lines[len(lines)-1]
+                    line = line[:len(line)-1]
+                    if len(line) > 67:
+                        line = line[:67]
+                    screen.print_at('-'*67, 0, 4)
+                    screen.print_at(' '*67, 0, 3)
+                    if line.split(':')[0] == localUser:
+                        color = 3
+                    else:
+                        color = 5
+                    screen.print_at(line, 0, 3, color)
+            except:
+                None
             screen.refresh()
             sleep(.075)
         except:
@@ -285,7 +384,6 @@ nextScreen = 'worldSelect'
 localUser = {}
 def main():
     global nextScreen, localUser
-    #Screen.wrapper(worldSelect) #debug line
     Screen.wrapper(logInScreen)
     if nextScreen == 'characterSelection':
         Screen.wrapper(createCharacterScreen)
@@ -307,5 +405,6 @@ atexit.register(exit)
 if __name__ == '__main__':
     try:
         main()
+        
     except KeyboardInterrupt:
         exit()
