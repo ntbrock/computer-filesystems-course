@@ -18,7 +18,7 @@
      1. walls (an array of strings containing single character each that represents a wall)
 
 ## Here is an example world json file
-''' json
+``` json
 {
 	"name": "example",
 	"data": {
@@ -33,7 +33,7 @@
 		"walls": ["/","\\","|","#","_","E"]
 	}
 }
-'''
+```
 ## Oh Yeah you can also make custom character parts
 
 ## Problems I ran into
