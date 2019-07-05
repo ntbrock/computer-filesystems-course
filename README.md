@@ -336,6 +336,20 @@ Git Filesystem
 
 Demos - Draw a card order!
 
+### Demonstration Requirements
+
+100% Committed, demoing from github and a terminal
+
+README.md in Markdown that is 'documents' your project
+
+Why? Why did you chose this?  Why is this important?
+
+Interactive Demonstration of your Project
+
+09:30AM Start, Randomied Order, we may have guests
+
+
+### Lecture Topics
 
 My random error in python
 
