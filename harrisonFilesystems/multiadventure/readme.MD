@@ -11,14 +11,14 @@
  1. go to the `world/` directory
  1. edit or create `[worldname].json`
  1. include the following fields
-   1. name (a string that is the name of the world)
-   1. data (another object containing the following)
-     1. type (containing string "public" or "private")
-     1. map (an array of strings that will be the map)
-     1. walls (an array of strings containing single character each that represents a wall)
+    1. name (a string that is the name of the world)
+    1. data (another object containing the following)
+       1. type (containing string "public" or "private")
+       1. map (an array of strings that will be the map)
+       1. walls (an array of strings containing single character each that represents a wall)
 
 ## Here is an example world json file
-''' json
+```json
 {
 	"name": "example",
 	"data": {
@@ -30,10 +30,10 @@
 			"..| #|.....",
 			"..|E_|....."
 		],
-		"walls": ["/","\\","|","#","_","E"]
+		"walls": ["/","\\","|","_","E"]
 	}
 }
-'''
+```
 ## Oh Yeah you can also make custom character parts
 
 ## Problems I ran into
