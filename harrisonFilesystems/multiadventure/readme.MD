@@ -18,7 +18,7 @@
        1. walls (an array of strings containing single character each that represents a wall)
 
 ## Here is an example world json file
-```javascript
+```json
 {
 	"name": "example",
 	"data": {
