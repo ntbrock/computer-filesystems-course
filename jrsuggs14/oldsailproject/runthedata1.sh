@@ -6,5 +6,5 @@ grep "GPGLL" allthesaildata1.txt > pureGPS1.csv
 
 
 gnuplot sortGPGLL1.gnuplot
-
+gnuplot sortGPGLLpoints1.gnuplot
 
