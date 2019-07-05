@@ -1,6 +1,7 @@
 rm GPSdata.png
 rm pureGPS.csv
 rm purewind.csv
+rm superpuredata.csv
 
 grep "GPGLL" allthesaildata.txt > pureGPS.csv
 grep "IIVWT" allthesaildata.txt > purewind.csv
