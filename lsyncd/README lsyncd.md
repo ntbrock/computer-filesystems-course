@@ -192,7 +192,7 @@ One advantage of this new solution was that the replication happened in parallel
 
 ## Win
 
-With 16G of used space, small file repliciations still went through within a few seconds.  This models the increased speed that my users will experience as their minor changes are quickly replicated, (just the deltas), versus having t
+With 16G of used space, small file repliciations still went through within a few seconds.  This models the increased speed that my users will experience as their minor changes are quickly replicated, (just the deltas), versus having to wait for hours.
 
 DRY - Don't Repeat Yourself - The system doesnm't need to re-scan the entire disk to look for changes every 10 minutes, instead it  uses a filesystem concept called inotify to listen for changes and react to just those changes.
  
